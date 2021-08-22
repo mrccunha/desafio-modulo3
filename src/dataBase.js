@@ -74,11 +74,17 @@ function curarPokemon(id) {
     const valorPocao = 20
     const pokemon = pokemons[id]
 
-    pokemon.hp = pokemon.hp + valorPocao
-
-    if (pokemon.hp > 100) pokemon.hp = 100
-
-    return pokemon
+    if (pokemon.hp == 100) {
+        return `O ${pokemon.nome} já está com o valor máximo de HP e não precisa de cura! Pronto pra batalha?`
+    } else {
+        pokemon.hp = pokemon.hp + valorPocao
+        if (pokemon.hp >= 100) {
+            pokemon.hp = 100
+            return `O ${pokemon.nome} recebeu +${valorPocao}HP e atingiu o nível máximo! Vamos batalhar?`
+        } else {
+            return `O ${pokemon.nome} recebeu +${valorPocao}HP e está com ${pokemon.hp}HP!`                    
+        }
+    }
 }
 
 module.exports = { salvarPokemons, mostrarPokemon, mostrarPokemons, atualizarPokemon, deletarPokemons, batalhaPokemon, curarPokemon }
